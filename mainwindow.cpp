@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QString>
+#include <QRegExpValidator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,6 +11,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->bt_clear,SIGNAL(clicked()),this,SLOT(bt_cl_clicked()));
 
+    //inpur regulation
+    QRegExp rx("^-?[0-9]*$");
+    QRegExpValidator *vali = new QRegExpValidator(rx, this);
+    ui->lineEdit_i1->setValidator(vali);
+    ui->lineEdit_i2->setValidator(vali);
+    ui->lineEdit_i3->setValidator(vali);
+    ui->lineEdit_i4->setValidator(vali);
 
 }
 
@@ -37,6 +45,8 @@ void bubble_sort (int *array,int length=4)
 
 void MainWindow::on_bt_confirm_clicked()
 {
+
+
     arr_i[0] = ui->lineEdit_i1->text();
     arr_i[1] = ui->lineEdit_i2->text();
     arr_i[2] = ui->lineEdit_i3->text();
